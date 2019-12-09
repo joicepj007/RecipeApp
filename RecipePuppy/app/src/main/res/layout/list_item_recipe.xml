@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<androidx.cardview.widget.CardView
+    android:id="@+id/cv_image"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/recipe_textview_margin_end"
+    app:cardCornerRadius="@dimen/recipe_margin_padding"
+    app:cardElevation="@dimen/recipe_margin_padding">
+    <ImageView
+        android:id="@+id/imageMovie"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/rec_view_image_height"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+         />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvRecipeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="@dimen/recipe_textview_margin_end"
+        android:layout_marginBottom="@dimen/recipe_textview_margin_end"
+        android:textSize="@dimen/rec_view_item_normal_text_size"
+        android:layout_margin="@dimen/recipe_textview_margintop"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_below="@+id/cv_image"
+        android:layout_gravity="bottom" />
+</RelativeLayout>

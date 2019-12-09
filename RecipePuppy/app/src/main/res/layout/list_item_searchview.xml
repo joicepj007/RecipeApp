@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_image"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/recipe_textview_margin_end"
+    app:cardCornerRadius="@dimen/recipe_margin_padding"
+    app:cardElevation="@dimen/recipe_margin_padding">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/recipe_header_image_height"
+        android:background="@drawable/gradient_rectangle_background"
+        >
+
+        <TextView
+            android:id="@+id/tvRecipeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/rec_view_item_small_text_size"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:layout_marginTop="@dimen/recipe_header_margin"
+            android:layout_centerHorizontal="true"
+            android:text="@string/create_the_perfect_nhealthy_meal"
+
+            />
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/search_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/recipe_textview_margintop"
+            android:textSize="14sp"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhite"
+            android:hint="@string/filter_by_ingredients"
+            android:layout_marginStart="@dimen/rec_view_item_margin_start"
+            android:layout_marginEnd="@dimen/rec_view_item_margin_start"
+            android:drawableRight="@drawable/search"
+            android:drawablePadding="@dimen/recipe_textview_margintop"
+            android:layout_marginBottom="@dimen/recipe_header_margin"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_alignParentBottom="true"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:padding="@dimen/recipe_textview_margintop"
+            android:background="@drawable/searchview_rect_background"
+            android:maxLines="1"
+            />
+
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

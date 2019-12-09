@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.RecipeDataDetailsActivity">
+
+        <ImageView
+        android:id="@+id/iv_recipe"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/recipe_image_height"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+         />
+
+
+    <RelativeLayout
+        android:id="@+id/rl_title_header"
+        android:layout_below="@+id/iv_recipe"
+        android:layout_width="match_parent"
+        android:background="@color/colorWhite"
+        android:layout_height="@dimen/recipe_layout_height">
+
+        <TextView
+            android:id="@+id/tvRecipeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/search_detail_textview_size"
+            android:layout_centerVertical="true"
+            android:text="@string/title_of_the_recipe"
+            android:layout_marginStart="@dimen/recipe_text_margin"
+            android:layout_marginEnd="@dimen/recipe_text_margin"
+             />
+
+    </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_ingredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/search_detail_textview_size"
+            android:layout_marginTop="@dimen/recipe_textview_margintop"
+            android:layout_marginStart="@dimen/recipe_text_margin"
+            android:layout_marginEnd="@dimen/recipe_text_margin"
+            android:layout_below="@+id/rl_title_header"
+            android:layout_centerVertical="true"
+            android:text="@string/ingredients"
+
+            />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_ingredients"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_ingredients"
+        android:overScrollMode="never"
+            android:layout_marginStart="@dimen/recipe_textview_margintop"
+            android:layout_marginEnd="@dimen/recipe_textview_margintop"
+        android:layout_marginTop="@dimen/recipe_textview_margin_end"
+        android:layout_marginBottom="@dimen/recipe_textview_margin_end"
+        />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="@color/colorWhite"
+            android:layout_below="@+id/rv_ingredients"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_webview_click"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/search_detail_textview_size"
+                android:padding="@dimen/recipe_textview_margintop"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/recipe_textview_margintop"
+                android:layout_marginBottom="@dimen/recipe_text_margin"
+                android:background="@drawable/search_view_background"
+                android:layout_centerVertical="true"
+                android:text="@string/view_website"
+                android:layout_marginLeft="@dimen/recipe_text_margin"
+                android:layout_marginRight="@dimen/recipe_text_margin"
+                />
+
+
+        </RelativeLayout>
+
+
+
+        <ImageView
+            android:id="@+id/bt_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/recipe_textview_margintop"
+            android:src="@drawable/ic_back"
+
+            />
+
+
+
+</RelativeLayout>
+</androidx.core.widget.NestedScrollView>

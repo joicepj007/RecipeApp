@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Recipe Puppy</string>
+    <string name="title_of_the_recipe">Title of the Recipe</string>
+    <string name="view_website">VIEW WEBSITE</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="create_the_perfect_nhealthy_meal">Create the perfect \nhealthy meal</string>
+    <string name="filter_by_ingredients">Filter by Ingredients</string>
+</resources>
