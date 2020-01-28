@@ -69,7 +69,7 @@ class RecipeDataListGridRecyclerAdapter : RecyclerView.Adapter<RecyclerView.View
         fun bindView(resultData: ResultData) {
 
             itemView.tvRecipeTitle.text = resultData.title
-            Glide.with(itemView.context).load(resultData.thumbnail!!).into(itemView.imageMovie)
+            Glide.with(itemView.context).load(resultData.thumbnail).into(itemView.imageMovie)
         }
 
     }

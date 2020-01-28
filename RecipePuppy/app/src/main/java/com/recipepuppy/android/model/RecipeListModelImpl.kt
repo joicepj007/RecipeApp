@@ -48,7 +48,7 @@ open class RecipeListModelImpl {
 
     fun onStop() {
         if (disposable != null) {
-            disposable!!.dispose()
+            disposable?.dispose()
         }
     }
 

@@ -12,7 +12,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Query
 
-open class ApiClient {
+class ApiClient {
 
     private val myAppService: ApiInterface
 

@@ -12,7 +12,6 @@ import java.util.ArrayList
 
 class IngredientsListRecyclerAdapter(val mContext: Context ,val subList :Array<String>) : RecyclerView.Adapter<IngredientsListRecyclerAdapter.SubViewHolder>() {
 
-    private val TAG = IngredientsListRecyclerAdapter::class
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

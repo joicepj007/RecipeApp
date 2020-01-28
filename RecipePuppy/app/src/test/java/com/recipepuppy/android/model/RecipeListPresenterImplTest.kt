@@ -31,90 +31,85 @@ import retrofit2.Response
 )
 class RecipeListPresenterImplTest {
     @Mock
-    internal var mainView: MainView? = null
+    lateinit var mainView: MainView
     @Mock
-    internal var loadDataView: LoadDataView? = null
-    internal var recipeListPresenter: RecipeListPresenterImpl? =
-        null
+    lateinit var loadDataView: LoadDataView
+    lateinit var recipeListPresenter: RecipeListPresenterImpl
     @Mock
-    internal var recipeListModel: RecipeListModelImpl? = null
+    lateinit var recipeListModel: RecipeListModelImpl
     @Captor
-    internal var filterResponseCallbackArgumentCaptor: ArgumentCaptor<FilterResponseCallback>? =
-        null
+    lateinit var filterResponseCallbackArgumentCaptor: ArgumentCaptor<FilterResponseCallback>
     @Captor
-    internal var mainResponseCallbackArgumentCaptor: ArgumentCaptor<RecipeListModelImpl.MainResponseCallback>? =
-        null
+    lateinit var mainResponseCallbackArgumentCaptor: ArgumentCaptor<RecipeListModelImpl.MainResponseCallback>
     @Mock
-    internal var callback: FilterResponseCallback? =
-        null
-    internal var recipeDataResponse: Response<RecipeDataResponse>? =
-        null
+    lateinit var callback: FilterResponseCallback
+    lateinit var recipeDataResponse: Response<RecipeDataResponse>
 
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
         recipeListPresenter = RecipeListPresenterImpl(
-            mainView!!,
-            loadDataView!!,
-            recipeListModel!!
+            mainView,
+            loadDataView,
+            recipeListModel
         )
     }
 
     @Test
     fun filterRecipeDataSuccess() {
-        recipeListPresenter!!.filterRecipeData("search")
+        recipeListPresenter.filterRecipeData("search")
         verify(
             recipeListModel
-        )!!.filterData(
+        ).filterData(
             eq("search"),
-            filterResponseCallbackArgumentCaptor!!.capture()
+            filterResponseCallbackArgumentCaptor.capture()
         )
-        filterResponseCallbackArgumentCaptor!!.value.onFilterDataSuccess(recipeDataResponse!!)
+        filterResponseCallbackArgumentCaptor.value.onFilterDataSuccess(recipeDataResponse)
         verify(
             mainView
-        )!!.onFilterDataSuccess(
+        ).onFilterDataSuccess(
             eq(
                 recipeDataResponse
-            )!!
+            )
         )
     }
 
     @Test
     fun filterRecipeDataFailure() {
         val error = Throwable("Something Went Wrong")
-        recipeListPresenter!!.filterRecipeData("search")
+        recipeListPresenter.filterRecipeData("search")
         verify(
             recipeListModel
-        )!!.filterData(
+        ).filterData(
             eq("search"),
-            filterResponseCallbackArgumentCaptor!!.capture()
+            filterResponseCallbackArgumentCaptor.capture()
         )
-        filterResponseCallbackArgumentCaptor!!.value.onFilterDataError(error)
+        filterResponseCallbackArgumentCaptor.value.onFilterDataError(error)
         verify(
             mainView
-        )!!.onFilterDataError(eq(error))
+        ).onFilterDataError(eq(error))
     }
 
     @get:Test
     val fullDataSuccess: Unit
         get() {
-            recipeListPresenter!!.loadRecipeData()
+            recipeListPresenter.loadRecipeData()
             verify(
                 loadDataView
-            )!!.showProgressbar()
+            ).showProgressbar()
             verify(
                 recipeListModel
-            )!!.loadFullData(mainResponseCallbackArgumentCaptor!!.capture())
-            mainResponseCallbackArgumentCaptor!!.value.onSuccess(recipeDataResponse!!)
+            ).loadFullData(mainResponseCallbackArgumentCaptor.capture())
+            mainResponseCallbackArgumentCaptor.value.onSuccess(recipeDataResponse)
             verify(
                 loadDataView
-            )!!.hideProgressbar()
+            ).hideProgressbar()
             verify(
                 loadDataView
-            )!!.onSuccess(
+            ).onSuccess(
                 eq(
                     recipeDataResponse
-                )!!
+                )
             )
         }
 
@@ -122,19 +117,19 @@ class RecipeListPresenterImplTest {
     val fullDataFailure: Unit
         get() {
             val error = Throwable("Something Went Wrong")
-            recipeListPresenter!!.loadRecipeData()
+            recipeListPresenter.loadRecipeData()
             verify(
                 loadDataView
-            )!!.showProgressbar()
+            ).showProgressbar()
             verify(
                 recipeListModel
-            )!!.loadFullData(mainResponseCallbackArgumentCaptor!!.capture())
-            mainResponseCallbackArgumentCaptor!!.value.onError(error)
+            ).loadFullData(mainResponseCallbackArgumentCaptor.capture())
+            mainResponseCallbackArgumentCaptor.value.onError(error)
             verify(
                 loadDataView
-            )!!.hideProgressbar()
+            ).hideProgressbar()
             verify(
                 loadDataView
-            )!!.onError(eq(error))
+            ).onError(eq(error))
         }
 }

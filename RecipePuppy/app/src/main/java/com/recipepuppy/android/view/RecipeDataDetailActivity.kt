@@ -51,7 +51,7 @@ class RecipeDataDetailActivity : AppCompatActivity() {
         mLinearLayoutManager= LinearLayoutManager(this)
         recViewItemDecoration=RecViewItemDecoration(this.resources.getDimensionPixelSize(R.dimen.ingredient_rv_item_space))
         tvRecipeTitle.text=title
-        Glide.with(this).load(thumbnail!!).into(iv_recipe)
+        Glide.with(this).load(thumbnail).into(iv_recipe)
         tv_webview_click.setOnClickListener {
             val intent = Intent(this@RecipeDataDetailActivity,WebViewActivity::class.java)
             intent.putExtra("href", mhref)

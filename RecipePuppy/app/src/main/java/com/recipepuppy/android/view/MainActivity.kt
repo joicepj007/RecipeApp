@@ -40,10 +40,10 @@ class MainActivity : AppCompatActivity(), ViewPresenter.MainView, ViewPresenter.
     TextWatcher, View.OnTouchListener {
 
 
-    var presenterImplementation: RecipeListPresenterImpl? = null
-    private var mAndroidArrayList: ArrayList<ResultData>? = null
-    var disposable: Disposable? = null
-    private var movieListAdapter: RecipeDataListGridRecyclerAdapter? = null
+    lateinit var presenterImplementation: RecipeListPresenterImpl
+    var mAndroidArrayList: ArrayList<ResultData>?=null
+    lateinit var disposable: Disposable
+    lateinit var movieListAdapter: RecipeDataListGridRecyclerAdapter
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,9 +52,9 @@ class MainActivity : AppCompatActivity(), ViewPresenter.MainView, ViewPresenter.
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
         presenterImplementation = RecipeListPresenterImpl(this, this, RecipeListModelImpl())
-        presenterImplementation!!.loadRecipeData()
-        search_edt!!.addTextChangedListener(this)
-        search_edt!!.setOnTouchListener(this)
+        presenterImplementation.loadRecipeData()
+        search_edt?.addTextChangedListener(this)
+        search_edt?.setOnTouchListener(this)
     }
 
     override fun afterTextChanged(s: Editable?) {
@@ -69,8 +69,8 @@ class MainActivity : AppCompatActivity(), ViewPresenter.MainView, ViewPresenter.
      * @param count size of the text
      * */
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        presenterImplementation!!.filterRecipeData(search_edt.text.toString())
-        movieListAdapter?.notifyDataSetChanged()
+        presenterImplementation.filterRecipeData(search_edt.text.toString())
+        movieListAdapter.notifyDataSetChanged()
     }
 
     /**
@@ -89,8 +89,8 @@ class MainActivity : AppCompatActivity(), ViewPresenter.MainView, ViewPresenter.
                                 DRAWABLE_RIGHT
                             ).getBounds().width()
                         ) {
-                            presenterImplementation!!.filterRecipeData(search_edt.text.toString())
-                            movieListAdapter?.notifyDataSetChanged()
+                            presenterImplementation.filterRecipeData(search_edt.text.toString())
+                            movieListAdapter.notifyDataSetChanged()
                             search_edt.hideKeyboard()
                             return true
                         }
@@ -149,24 +149,24 @@ class MainActivity : AppCompatActivity(), ViewPresenter.MainView, ViewPresenter.
     override fun onDestroy() {
         super.onDestroy()
         //to cancel the api call on app destroy,to solve memory leaks
-        presenterImplementation!!.onStop()
+        presenterImplementation.onStop()
     }
 
     private fun adapterInitialize(reposnseModel: Response<RecipeDataResponse>) {
-        mAndroidArrayList = ArrayList(reposnseModel.body()!!.results)
+        mAndroidArrayList = reposnseModel.body()?.results?.let { ArrayList(it) }
         rv_ingredients.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         rv_ingredients?.itemAnimator = DefaultItemAnimator()
         movieListAdapter = RecipeDataListGridRecyclerAdapter()
         rv_ingredients.adapter = movieListAdapter
-        movieListAdapter!!.setRecipeDataList(mAndroidArrayList!!)
-        movieListAdapter!!.setOnItemClickListener(object :
+        mAndroidArrayList?.let { movieListAdapter.setRecipeDataList(it) }
+        movieListAdapter.setOnItemClickListener(object :
             RecipeDataListGridRecyclerAdapter.ClickListener {
             override fun onClick(pos: Int, aView: View) {
                 val intent = Intent(this@MainActivity, RecipeDataDetailActivity::class.java)
-                intent.putExtra(AppConstants.KEY_TITLE, mAndroidArrayList!!.get(pos).title)
-                intent.putExtra(AppConstants.KEY_THUMBNAIL, mAndroidArrayList!!.get(pos).thumbnail)
-                intent.putExtra(AppConstants.KEY_INGEDIENTS, mAndroidArrayList!!.get(pos).ingredients)
-                intent.putExtra(AppConstants.KEY_HREF, mAndroidArrayList!!.get(pos).href)
+                intent.putExtra(AppConstants.KEY_TITLE, mAndroidArrayList?.get(pos)?.title)
+                intent.putExtra(AppConstants.KEY_THUMBNAIL, mAndroidArrayList?.get(pos)?.thumbnail)
+                intent.putExtra(AppConstants.KEY_INGEDIENTS, mAndroidArrayList?.get(pos)?.ingredients)
+                intent.putExtra(AppConstants.KEY_HREF, mAndroidArrayList?.get(pos)?.href)
                 startActivity(intent)
             }
         })
@@ -182,7 +182,7 @@ class MainActivity : AppCompatActivity(), ViewPresenter.MainView, ViewPresenter.
 
     override fun onPause() {
         super.onPause()
-        disposable?.dispose()
+        disposable.dispose()
     }
 
 }

@@ -19,10 +19,4 @@ interface ViewPresenter {
         fun onSuccess(reposnseModel: Response<RecipeDataResponse>)
         fun onError(throwable: Throwable)
     }
-
-    interface MainPresenter {
-        fun filterRecipeData(query: String)
-        fun loadRecipeData()
-        fun onStop()
-    }
 }
